@@ -7,8 +7,10 @@
 %   (Workday, Greenhouse, Lever, Taleo) leen texto en orden
 %   lineal; multi-columnas y cajas suelen desordenar el texto
 %   extraido.
-% - Fuente tipo Times (mathptmx) via pdfLaTeX: fuentes Type1
-%   estándar, sin problemas de extracción de texto/encoding.
+% - Fuente sans-serif (TeX Gyre Heros, clon de Helvetica) via pdfLaTeX:
+%   fuente Type1 estándar (incluida en TeX Live/MiKTeX), sin problemas
+%   de extracción de texto/encoding -- mismo nivel de ATS-safety que
+%   Times, pero con lectura más moderna en pantalla.
 % - Bullets "-" en vez de simbolos unicode raros.
 % - hyperref con texto visible (no solo "click here"): el ATS
 %   necesita ver la URL como texto, no solo como link.
@@ -17,27 +19,26 @@
 % ============================================================
 \documentclass[11pt,letterpaper]{article}
 
-\usepackage[margin=0.7in,top=0.6in,bottom=0.6in]{geometry}
-\usepackage{mathptmx}              % fuente tipo Times, ATS-safe
+\usepackage[margin=0.65in,top=0.5in,bottom=0.5in]{geometry}
 \usepackage[T1]{fontenc}
+\usepackage[scaled]{helvet}        % fuente sans-serif (URW Nimbus Sans / Helvetica-clone), ATS-safe
+\renewcommand{\familydefault}{\sfdefault}
 \usepackage[utf8]{inputenc}
 \usepackage{enumitem}
 \usepackage[hidelinks]{hyperref}
 \usepackage{titlesec}
 \usepackage{parskip}
-\usepackage{xcolor}                % solo para un gris de acento en las reglas; el texto sigue en negro
-
 \pagestyle{empty}
 \raggedright
 \setlength{\parindent}{0pt}
-\setlength{\parskip}{2pt}
+\setlength{\parskip}{1pt}
 
-% ---------- Section headers: Harvard-style, bold caps + regla ----------
-\titleformat{\section}{\bfseries\large\MakeUppercase}{}{0em}{}[\vspace{-5pt}{\color[gray]{0.35}\hrule height 0.6pt}\vspace{3pt}]
-\titlespacing{\section}{0pt}{8pt}{3pt}
+% ---------- Section headers: bold, Title Case + regla ----------
+\titleformat{\section}{\bfseries\large}{}{0em}{}[\vspace{-5pt}\hrule\vspace{3pt}]
+\titlespacing{\section}{0pt}{6pt}{2pt}
 
 % ---------- Listas compactas ----------
-\setlist[itemize]{leftmargin=14pt, label=--, itemsep=0pt, topsep=1pt, parsep=0pt}
+\setlist[itemize]{leftmargin=14pt, label=--, itemsep=0pt, topsep=0pt, parsep=0pt}
 
 % ---------- Comando para entradas de experiencia/proyecto ----------
 % \cventry{Titulo/Rol}{Fechas}{Organizacion}{Ubicacion}
@@ -83,8 +84,8 @@ and TypeScript, and across GCP, Azure and AWS.
 
 \cventry{Software Engineer --- Backend \& AI Automation}{May 2026 -- Present}{SimiAI}{Remote}
 \begin{itemize}
-  \item Designed and led the proof of concept for a Python agent engine (FastAPI) with tool-orchestration logic, defining the skill registry and data flow for automated engineering design.
-  \item Built the integration bridge that parses AI-processed field data -- photogrammetry, GPS and NLP output -- into standardized JSON payloads consumed downstream by the CAD automation pipeline.
+  \item Designed and led the proof of concept for a \textbf{Python agent engine} (FastAPI) with tool-orchestration logic, defining the skill registry and data flow for automated engineering design.
+  \item Built the integration bridge that parses \textbf{AI-processed field data} -- photogrammetry, GPS and NLP output -- into standardized JSON payloads consumed downstream by the CAD automation pipeline.
   \item Programmed C\# .NET logic that inserts dynamic blocks (poles, conduits, utility boxes) at precise georeferenced coordinates and orientations derived from routing parameters.
   \item Implemented asynchronous WPF/PaletteSet dockable panels (MVVM) so cloud-synced alerts and field media render without blocking the CAD UI thread.
   \item \textit{Tech Stack:} C\# .NET (AutoCAD API), Python (FastAPI), AWS (S3, SDK for .NET), Azure, Docker, PostgreSQL / PostGIS.
@@ -92,22 +93,22 @@ and TypeScript, and across GCP, Azure and AWS.
 
 \cventry{Jr. Software Engineer --- Cloud \& DevOps (CI/CD)}{Nov 2025 -- May 2026}{Committed Organization}{Remote}
 \begin{itemize}
-  \item Deployed and monitored backend inference services across Azure and GCP, building Grafana and Azure Monitor dashboards to track service health and support incident response.
-  \item Automated cloud infrastructure provisioning with Terraform templates for reproducible, consistent environments.
+  \item Deployed and monitored backend inference services across \textbf{Azure and GCP}, building Grafana and Azure Monitor dashboards to track service health and support incident response.
+  \item Automated cloud infrastructure provisioning with \textbf{Terraform} templates for reproducible, consistent environments.
   \item Configured Azure virtual networks, storage accounts and access policies; maintained CI/CD pipelines in GitHub Actions.
   \item \textit{Tech Stack:} Azure, GCP, AWS, Terraform, Docker, Grafana, GitHub Actions, Bash, Linux.
 \end{itemize}
 
 \cventry{Jr. Software Engineer --- Full-Stack}{Apr 2025 -- Nov 2025}{Committed Organization}{Remote}
 \begin{itemize}
-  \item Built and maintained modular backend services in Java and Spring Boot for transactional data flows, containerized with Docker for parity between local and production environments.
+  \item Built and maintained modular backend services in \textbf{Java and Spring Boot} for transactional data flows, containerized with Docker for parity between local and production environments.
   \item \textit{Tech Stack:} Java, Spring Boot, React, PostgreSQL, Docker, Git.
 \end{itemize}
 
 \cventry{Machine Learning Engineer --- Research Project}{Jun 2025 -- Dec 2025}{Universidad Nacional de San Agustin (UNSA)}{Arequipa, Peru}
 \begin{itemize}
-  \item Led development and training of ML models (Python, scikit-learn) for crop classification and phenological stage detection from satellite imagery, reaching +75\% accuracy.
-  \item Built Python/Pandas data pipelines with OpenCV preprocessing for feature extraction, cutting manual analysis time by \textasciitilde80\%.
+  \item Led development and training of ML models (Python, scikit-learn) for \textbf{crop classification and phenological stage detection} from satellite imagery, reaching +75\% accuracy.
+  \item Built Python/Pandas data pipelines with OpenCV preprocessing for feature extraction, \textbf{cutting manual analysis time by \textasciitilde80\%}.
   \item Containerized and deployed the inference services on Google Cloud Run.
   \item \textit{Tech Stack:} Python, FastAPI, Pandas, OpenCV, scikit-learn, Google Earth Engine, Google Cloud Run, Docker.
 \end{itemize}
@@ -117,37 +118,37 @@ and TypeScript, and across GCP, Azure and AWS.
 
 \cventry{Law Copilot --- RAG over Peruvian legislation}{Jan 2026}{Lead AI \& Cloud Engineer --- Google AI Partner Catalyst}{}
 \begin{itemize}
-  \item Built a specialized vector knowledge base indexing the Political Constitution of Peru, the Civil Code, the Consumer Protection Code and the Law against Violence towards Women, so answers stay grounded in specific statutes.
-  \item Implemented the retrieval layer with FAISS and sentence-transformers embeddings, using dynamic context injection to reduce hallucination on legal questions.
-  \item Deployed the FastAPI backend to Google Cloud Run with multi-stage Docker builds to shrink the image and cut cold-start latency.
+  \item Built a \textbf{specialized vector knowledge base} indexing the Political Constitution of Peru, the Civil Code, the Consumer Protection Code and the Law against Violence towards Women, so answers stay grounded in specific statutes.
+  \item Implemented the retrieval layer with \textbf{FAISS} and sentence-transformers embeddings, using dynamic context injection to reduce hallucination on legal questions.
+  \item Deployed the FastAPI backend to \textbf{Google Cloud Run} with multi-stage Docker builds to shrink the image and cut cold-start latency.
   \item \textit{Tech Stack:} Python (FastAPI), LangChain, FAISS, Gemini API, OpenAI API, Next.js, Google Cloud Run, Docker.
 \end{itemize}
 
 \cventry{Quechua Q\&A --- RAG for a low-resource language}{2026}{AI \& Backend Engineer}{}
 \begin{itemize}
   \item Built a question-answering system over Quechua grammar documents, returning answers with the source sections and page numbers used, so every response is traceable.
-  \item Structured the FastAPI backend in layered architecture (API / services / repositories / core) with Pydantic models and async I/O.
+  \item Structured the FastAPI backend in \textbf{layered architecture} (API / services / repositories / core) with Pydantic models and async I/O.
   \item Set up GitHub Actions CI/CD with deployment configurations for both Azure and GCP.
   \item \textit{Tech Stack:} Python (FastAPI), Gemini API, Pydantic, Next.js, TypeScript, GitHub Actions, Azure, GCP.
 \end{itemize}
 
 \cventry{On-Device AI Study Assistant}{Nov 2025}{AI Engineer --- Google Chrome Built-in AI Challenge 2025}{}
 \begin{itemize}
-  \item Integrated Gemini Nano inside Chrome to generate summaries, flashcards and five types of exercises fully offline -- study documents never leave the user's device.
+  \item Integrated \textbf{Gemini Nano} inside Chrome to generate summaries, flashcards and five types of exercises \textbf{fully offline} -- study documents never leave the user's device.
   \item Split the workload deliberately: local Nano for privacy-sensitive document processing, cloud Gemini via FastAPI and LangChain for learning roadmaps and generated games.
   \item \textit{Tech Stack:} Next.js 14, TypeScript, Gemini Nano (Prompt API), Gemini API, Python (FastAPI), LangChain, PyPDF2.
 \end{itemize}
 
 \cventry{Space Biology Knowledge Engine}{Oct 2025}{AI Engineer --- NASA Space Apps Challenge 2025}{}
 \begin{itemize}
-  \item Clustered space-biology literature by meaning using SciBERT embeddings and HDBSCAN, with automatic cluster labeling (KeyBERT, TF-IDF) and an agent that extracts research evidence from each paper.
+  \item Clustered space-biology literature by meaning using \textbf{SciBERT embeddings and HDBSCAN}, with automatic cluster labeling (KeyBERT, TF-IDF) and an agent that extracts research evidence from each paper.
   \item Exposed the result as an interactive knowledge map backed by a FastAPI service.
   \item \textit{Tech Stack:} Python (FastAPI), SciBERT, HDBSCAN, scikit-learn, spaCy, transformers, KeyBERT, React.
 \end{itemize}
 
 \cventry{ONISAT CanSat 2026 --- Telemetry \& Imaging System}{Dec 2025 -- Present}{Lead Software Engineer}{}
 \begin{itemize}
-  \item Owned the full data path for a CanSat mission: C++17 flight software on a Raspberry Pi Zero 2W, a 433 MHz LoRa downlink, and a Python ground station that reassembles fragmented images, recovering packets lost in flight with OpenCV inpainting instead of dropping frames.
+  \item Owned the full data path for a CanSat mission: C++17 flight software on a Raspberry Pi Zero 2W, a 433 MHz LoRa downlink, and a Python ground station that reassembles fragmented images, recovering packets lost in flight with \textbf{OpenCV inpainting} instead of dropping frames.
   \item \textit{Tech Stack:} C++17, Raspberry Pi, ESP32-S3, LoRa (SX1278), Python, OpenCV, WebSockets, Next.js, Three.js, Docker.
 \end{itemize}
 
