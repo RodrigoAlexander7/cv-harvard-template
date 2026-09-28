@@ -1,0 +1,158 @@
+% ============================================================
+% CV Template - Harvard style, ATS-safe
+% Rodrigo Alexander Fernandez Huarca
+%
+% Notas de diseño (por qué está hecho así):
+% - Sin tablas, columnas ni gráficos: los parsers de ATS
+%   (Workday, Greenhouse, Lever, Taleo) leen texto en orden
+%   lineal; multi-columnas y cajas suelen desordenar el texto
+%   extraido.
+% - Fuente tipo Times (mathptmx) via pdfLaTeX: fuentes Type1
+%   estándar, sin problemas de extracción de texto/encoding.
+% - Bullets "-" en vez de simbolos unicode raros.
+% - hyperref con texto visible (no solo "click here"): el ATS
+%   necesita ver la URL como texto, no solo como link.
+% - Fechas alineadas con \hfill dentro de la misma linea de
+%   texto (no tabular): se mantiene como texto plano lineal.
+% ============================================================
+\documentclass[11pt,letterpaper]{article}
+
+\usepackage[margin=0.7in,top=0.6in,bottom=0.6in]{geometry}
+\usepackage{mathptmx}              % fuente tipo Times, ATS-safe
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{titlesec}
+\usepackage{parskip}
+\usepackage{xcolor}                % solo para un gris de acento en las reglas; el texto sigue en negro
+
+\pagestyle{empty}
+\raggedright
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{2pt}
+
+% ---------- Section headers: Harvard-style, bold caps + regla ----------
+\titleformat{\section}{\bfseries\large\MakeUppercase}{}{0em}{}[\vspace{-5pt}{\color[gray]{0.35}\hrule height 0.6pt}\vspace{3pt}]
+\titlespacing{\section}{0pt}{8pt}{3pt}
+
+% ---------- Listas compactas ----------
+\setlist[itemize]{leftmargin=14pt, label=--, itemsep=0pt, topsep=1pt, parsep=0pt}
+
+% ---------- Comando para entradas de experiencia/proyecto ----------
+% \cventry{Titulo/Rol}{Fechas}{Organizacion}{Ubicacion}
+\newcommand{\cventry}[4]{%
+  \textbf{#1} \hfill \textbf{#2}\\
+  \textit{#3} \hfill \textit{#4}\\[1pt]
+}
+
+\begin{document}
+
+% ================= HEADER =================
+\begin{center}
+  {\LARGE \textbf{Rodrigo Alexander Fernandez Huarca}}\\[1pt]
+  {\large AI Engineer \textbar\ Backend \& Cloud-Native Systems}\\[3pt]
+  Arequipa, Peru \textbar\
+  \href{mailto:rodrygoleu7@gmail.com}{rodrygoleu7@gmail.com} \textbar\
+  \href{https://github.com/RodrigoAlexander7}{github.com/RodrigoAlexander7} \textbar\
+  \href{https://linkedin.com/in/rodrigo-fernandez-huarca}{linkedin.com/in/rodrigo-fernandez-huarca} \textbar\
+  \href{https://rodrygoleu.netlify.app}{rodrygoleu.netlify.app}
+\end{center}
+
+% ================= PROFESSIONAL SUMMARY =================
+\section{Professional Summary}
+Software Engineer building applied AI systems and the backend infrastructure that runs them in production.
+Designs RAG pipelines end to end -- document ingestion, embeddings, vector retrieval and context grounding --
+and ships them as containerized FastAPI services on Google Cloud Run. Comfortable across Python, C\# (.NET)
+and TypeScript, and across GCP, Azure and AWS.
+
+% ================= TECHNICAL SKILLS =================
+\section{Technical Skills}
+\begin{itemize}
+  \item \textbf{AI \& LLM:} RAG architectures, LangChain, prompt orchestration, Gemini API, Gemini Nano (on-device), OpenAI API, FAISS, sentence-transformers embeddings.
+  \item \textbf{Machine Learning:} scikit-learn, HDBSCAN, K-Means, SciBERT, spaCy, TF-IDF, OpenCV, Pandas, NumPy.
+  \item \textbf{Backend \& APIs:} Python (FastAPI, Flask, Uvicorn), C\# (.NET), TypeScript (NestJS, Node.js), Java (Spring Boot), REST, WebSockets.
+  \item \textbf{Cloud \& DevOps:} Google Cloud (Cloud Run), Azure, AWS (S3), Docker (multi-stage), Terraform, GitHub Actions, Grafana, Azure Monitor, Linux.
+  \item \textbf{Databases:} PostgreSQL, PostGIS, FAISS (vector), MongoDB, SQLite.
+  \item \textbf{Practices:} Layered/clean architecture, containerized environments, Git, Agile.
+  \item \textbf{Languages:} Spanish (native), English (B2).
+\end{itemize}
+
+% ================= WORK EXPERIENCE =================
+\section{Work Experience}
+
+\cventry{Software Engineer --- Backend \& AI Automation}{May 2026 -- Present}{SimiAI}{Remote}
+\begin{itemize}
+  \item Designed and led the proof of concept for a Python agent engine (FastAPI) with tool-orchestration logic, defining the skill registry and data flow for automated engineering design.
+  \item Built the integration bridge that parses AI-processed field data -- photogrammetry, GPS and NLP output -- into standardized JSON payloads consumed downstream by the CAD automation pipeline.
+  \item Programmed C\# .NET logic that inserts dynamic blocks (poles, conduits, utility boxes) at precise georeferenced coordinates and orientations derived from routing parameters.
+  \item Implemented asynchronous WPF/PaletteSet dockable panels (MVVM) so cloud-synced alerts and field media render without blocking the CAD UI thread.
+  \item \textit{Tech Stack:} C\# .NET (AutoCAD API), Python (FastAPI), AWS (S3, SDK for .NET), Azure, Docker, PostgreSQL / PostGIS.
+\end{itemize}
+
+\cventry{Jr. Software Engineer --- Cloud \& DevOps (CI/CD)}{Nov 2025 -- May 2026}{Committed Organization}{Remote}
+\begin{itemize}
+  \item Deployed and monitored backend inference services across Azure and GCP, building Grafana and Azure Monitor dashboards to track service health and support incident response.
+  \item Automated cloud infrastructure provisioning with Terraform templates for reproducible, consistent environments.
+  \item Configured Azure virtual networks, storage accounts and access policies; maintained CI/CD pipelines in GitHub Actions.
+  \item \textit{Tech Stack:} Azure, GCP, AWS, Terraform, Docker, Grafana, GitHub Actions, Bash, Linux.
+\end{itemize}
+
+\cventry{Jr. Software Engineer --- Full-Stack}{Apr 2025 -- Nov 2025}{Committed Organization}{Remote}
+\begin{itemize}
+  \item Built and maintained modular backend services in Java and Spring Boot for transactional data flows, containerized with Docker for parity between local and production environments.
+  \item \textit{Tech Stack:} Java, Spring Boot, React, PostgreSQL, Docker, Git.
+\end{itemize}
+
+\cventry{Machine Learning Engineer --- Research Project}{Jun 2025 -- Dec 2025}{Universidad Nacional de San Agustin (UNSA)}{Arequipa, Peru}
+\begin{itemize}
+  \item Led development and training of ML models (Python, scikit-learn) for crop classification and phenological stage detection from satellite imagery, reaching +75\% accuracy.
+  \item Built Python/Pandas data pipelines with OpenCV preprocessing for feature extraction, cutting manual analysis time by \textasciitilde80\%.
+  \item Containerized and deployed the inference services on Google Cloud Run.
+  \item \textit{Tech Stack:} Python, FastAPI, Pandas, OpenCV, scikit-learn, Google Earth Engine, Google Cloud Run, Docker.
+\end{itemize}
+
+% ================= AI PROJECTS =================
+\section{AI Projects}
+
+\cventry{Law Copilot --- RAG over Peruvian legislation}{Jan 2026}{Lead AI \& Cloud Engineer --- Google AI Partner Catalyst}{}
+\begin{itemize}
+  \item Built a specialized vector knowledge base indexing the Political Constitution of Peru, the Civil Code, the Consumer Protection Code and the Law against Violence towards Women, so answers stay grounded in specific statutes.
+  \item Implemented the retrieval layer with FAISS and sentence-transformers embeddings, using dynamic context injection to reduce hallucination on legal questions.
+  \item Deployed the FastAPI backend to Google Cloud Run with multi-stage Docker builds to shrink the image and cut cold-start latency.
+  \item \textit{Tech Stack:} Python (FastAPI), LangChain, FAISS, Gemini API, OpenAI API, Next.js, Google Cloud Run, Docker.
+\end{itemize}
+
+\cventry{Quechua Q\&A --- RAG for a low-resource language}{2026}{AI \& Backend Engineer}{}
+\begin{itemize}
+  \item Built a question-answering system over Quechua grammar documents, returning answers with the source sections and page numbers used, so every response is traceable.
+  \item Structured the FastAPI backend in layered architecture (API / services / repositories / core) with Pydantic models and async I/O.
+  \item Set up GitHub Actions CI/CD with deployment configurations for both Azure and GCP.
+  \item \textit{Tech Stack:} Python (FastAPI), Gemini API, Pydantic, Next.js, TypeScript, GitHub Actions, Azure, GCP.
+\end{itemize}
+
+\cventry{On-Device AI Study Assistant}{Nov 2025}{AI Engineer --- Google Chrome Built-in AI Challenge 2025}{}
+\begin{itemize}
+  \item Integrated Gemini Nano inside Chrome to generate summaries, flashcards and five types of exercises fully offline -- study documents never leave the user's device.
+  \item Split the workload deliberately: local Nano for privacy-sensitive document processing, cloud Gemini via FastAPI and LangChain for learning roadmaps and generated games.
+  \item \textit{Tech Stack:} Next.js 14, TypeScript, Gemini Nano (Prompt API), Gemini API, Python (FastAPI), LangChain, PyPDF2.
+\end{itemize}
+
+\cventry{Space Biology Knowledge Engine}{Oct 2025}{AI Engineer --- NASA Space Apps Challenge 2025}{}
+\begin{itemize}
+  \item Clustered space-biology literature by meaning using SciBERT embeddings and HDBSCAN, with automatic cluster labeling (KeyBERT, TF-IDF) and an agent that extracts research evidence from each paper.
+  \item Exposed the result as an interactive knowledge map backed by a FastAPI service.
+  \item \textit{Tech Stack:} Python (FastAPI), SciBERT, HDBSCAN, scikit-learn, spaCy, transformers, KeyBERT, React.
+\end{itemize}
+
+\cventry{ONISAT CanSat 2026 --- Telemetry \& Imaging System}{Dec 2025 -- Present}{Lead Software Engineer}{}
+\begin{itemize}
+  \item Owned the full data path for a CanSat mission: C++17 flight software on a Raspberry Pi Zero 2W, a 433 MHz LoRa downlink, and a Python ground station that reassembles fragmented images, recovering packets lost in flight with OpenCV inpainting instead of dropping frames.
+  \item \textit{Tech Stack:} C++17, Raspberry Pi, ESP32-S3, LoRa (SX1278), Python, OpenCV, WebSockets, Next.js, Three.js, Docker.
+\end{itemize}
+
+% ================= EDUCATION =================
+\section{Education}
+\cventry{Bachelor of Science in Systems Engineering}{Expected 2027}{Universidad Nacional de San Agustin (UNSA)}{Arequipa, Peru}
+
+\end{document}
