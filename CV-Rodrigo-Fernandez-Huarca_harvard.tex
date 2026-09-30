@@ -29,7 +29,8 @@
 \usepackage{titlesec}
 \usepackage{parskip}
 \pagestyle{empty}
-\raggedright
+% this line if you want to use the "ragged" style (no full justification)
+% \raggedright
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{1pt}
 
@@ -44,15 +45,15 @@
 % \cventry{Titulo/Rol}{Fechas}{Organizacion}{Ubicacion}
 \newcommand{\cventry}[4]{%
   \textbf{#1} \hfill \textbf{#2}\\
-  \textit{#3} \hfill \textit{#4}\\[1pt]
+  \textit{#3} \hfill \textit{#4}\par\nobreak\vspace{1pt}%
 }
 
 \begin{document}
 
 % ================= HEADER =================
 \begin{center}
-  {\LARGE \textbf{Rodrigo Alexander Fernandez Huarca}}\\[1pt]
-  {\large AI Engineer \textbar\ Backend \& Cloud-Native Systems}\\[3pt]
+  {\LARGE \textbf{Rodrigo Alexander Fernandez Huarca}}\\[5pt]
+  {\large AI Engineer \textbar\ Backend \& Cloud-Native Systems}\\[4pt]
   Arequipa, Peru \textbar\
   \href{mailto:rodrygoleu7@gmail.com}{rodrygoleu7@gmail.com} \textbar\
   \href{https://github.com/RodrigoAlexander7}{github.com/RodrigoAlexander7} \textbar\
