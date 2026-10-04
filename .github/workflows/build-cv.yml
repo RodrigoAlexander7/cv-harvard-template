@@ -5,11 +5,16 @@ on:
     branches: [main]
     tags: ["v*"]
     paths:
-      - "**.tex"
+      - "*.tex"
+      - "Makefile"
+      - ".agents/skills/**"
       - ".github/workflows/build-cv.yml"
   pull_request:
     paths:
-      - "**.tex"
+      - "*.tex"
+      - "Makefile"
+      - ".agents/skills/**"
+      - ".github/workflows/build-cv.yml"
   workflow_dispatch:
 
 permissions:
@@ -18,24 +23,34 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - language: en
+            source: CV-Rodrigo-Fernandez-Huarca_en.tex
+            output: CV-Rodrigo-Fernandez-Huarca_en.pdf
+          - language: es
+            source: CV-Rodrigo-Fernandez-Huarca_es.tex
+            output: CV-Rodrigo-Fernandez-Huarca_es.pdf
     steps:
       - uses: actions/checkout@v4
 
       - name: Compile LaTeX
         uses: xu-cheng/latex-action@v3
         with:
-          root_file: CV-Rodrigo-Fernandez-Huarca_harvard.tex
+          root_file: ${{ matrix.source }}
           latexmk_use_pdflatex: true
           args: -pdf -file-line-error -halt-on-error -interaction=nonstopmode
 
       - name: Upload PDF artifact
         uses: actions/upload-artifact@v4
         with:
-          name: cv-pdf
-          path: CV-Rodrigo-Fernandez-Huarca_harvard.pdf
+          name: cv-pdf-${{ matrix.language }}
+          path: ${{ matrix.output }}
 
       - name: Publish PDF to release (tags only)
         if: startsWith(github.ref, 'refs/tags/v')
         uses: softprops/action-gh-release@v2
         with:
-          files: CV-Rodrigo-Fernandez-Huarca_harvard.pdf
+          files: |
+            ${{ matrix.output }}
